@@ -1,0 +1,96 @@
+{% extends 'menu.html' %}
+{% block content %}
+    <form action="/main" method="POST" enctype="multipart/form-data">
+        <div class="container-fluid " style="margin-top:5rem">
+            <div class="alert shadow" style="background-color: #34b5a6" role="alert">
+
+                <legend class="border=bottom mb-2">
+                    <div class="alert text-uppercase" role="alert">
+                        <CENTER><strong><h1> Patient Details Form </h1></strong></CENTER>
+                    </div>
+                </legend>
+
+                <div class="form-group">
+                    <h5><label for="inputFname" class="form-label">First Name</label><br></h5>
+                    <input class="form-control" type="text" name="fname" id="inputFname" placeholder="Example: John"
+                           required>
+                </div>
+                <div class="form-group">
+                    <h5><label for="inputLname" class="form-label">Last Name</label><br></h5>
+                    <input class="form-control" type="text" name="lname" id="inputLname" placeholder="Example: Doe"
+                           required>
+                </div>
+                <div class="form-group">
+                    <h5><label for="inputEmail" class="form-label"> Email address</label><br></h5>
+                    <input class="form-control" type="text" name="mail" id="inputEmail"
+                           placeholder="Example: johndoe@email.com" required>
+                </div>
+                <div class="form-group">
+                    <h5><label for="inputContact" class="form-label">Contact No.</label><br></h5>
+                    <input class="form-control" type="text" name="contact" id="inputContact"
+                           placeholder="Example: 07511111111" required>
+                </div>
+
+                <div><h4>Upload CT Scan</h4></div>
+                <p></p>
+                <!-- upload image  -->
+
+                <p><input class=" form-control-lg " style="padding: 0rem;" name="image_file" type="file"
+                          accept="image/*"/></p>
+
+                <!--<p><input class="col-md-6" type="file" name="image_file" accept="image/*"></p>-->
+                <!-- <input class="form-control form-control-lg" name="image_file" id="formFileLg" type="file" accept="image/*"/>-->
+                <div>
+                    <span style="display: inline">
+                        <input class="btn btn-info" type="submit" name="action" value="SUBMIT"/>
+                        <input class="btn btn-danger" type="reset" value=" RESET "/>
+                    </span>
+                </div>
+                <div><br></div>
+            </div>
+
+        </div>
+
+        {% if filename %}
+            <!--<div><h2 class=" text-uppercase " style='color: whitesmoke;font-size: 36px;'>
+                <center>Covid-19 Test Result</center>
+            </h2></div>
+            <center><h3 class="col-md-6 "> Uploaded CT Image: </h3></center>
+            <div><center><img src="/static/uploads/{{ filename }}" width="640" height="427"></center></div><p></p>
+            <div class="alert alert-success " role="alert"><center><h4>Patient ID: "{{ patient_id }}" </h4></center></div>
+            <div class="alert alert-success " role="alert"><center><h4>Prediction: "{{ pred_response }}" </h4></center></div>
+            </div> -->
+
+            <div class="container" >
+                <br>
+                <h2 class="text-uppercase" align="center" style='color: white; font-size: 34px;'>Covid-19 Test Result</h2>
+                <div class="message_holder"></div>
+                <div class="alert alert-info" style="border-radius: 3rem;background-color:#f8f9fa;" role="alert">
+                    <br>
+                    <center><h3 class="col-md-6 "> Uploaded CT Image: </h3></center>
+                    <br>
+                    <div>
+                        <center><img src="static/uploads/{{ filename }}" width="640" height="427"></center>
+                    </div>
+                    <br>
+                    <div class="alert alert-success "
+                         style="background-color:#d4edda;border-radius: 3rem;" role="alert">
+                        <center><h4>Patient ID: "{{ patient_id }}" </h4></center>
+
+                        <center><h4>Predicted Result: "{{ pred_response }}"</h4></center>
+                        <!--<center><h4>Full Result: "{{ pred_response }}"</h4></center>-->
+
+                    </div>
+
+                    <!-- <div class="alert alert-secondary" role="alert">Percent: "{{ percent }}"</div> -->
+                    <!-- <div class="alert alert-secondary" role="alert">trial: "{{ trial }}"</div> -->
+                    <!-- <div class="alert alert-secondary" role="alert">Class 0: "{{class_0}}"
+                                &emsp;&emsp; Class 1: "{{class_1}}"</div> -->
+                </div>
+            </div>
+
+        {% endif %}
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+{% endblock content %}

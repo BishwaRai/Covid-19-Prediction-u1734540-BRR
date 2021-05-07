@@ -1,0 +1,28 @@
+{% extends 'menu.html' %}
+{% block content %}
+    <header>
+        <style>
+            body{
+                background-image: url("{{ url_for('static', filename='social-distancing-4972524_1280.png') }}");
+            }
+
+        </style>
+    </header>
+
+
+        <div class="content-section" style="margin-top: 4rem;"><h3>About Us:</h3>
+            <p></p>
+            <h4>
+                In this program based on lungs ct scan, Covid-19 results are predicted in real-time.
+                We can perform a Quick Scan for single CT images that generates an immediate result.
+                A scan can perform the test on a patient's CT image and store the result by creating
+                and adding a patients database through which we can analyse the patient's history.
+                The model that generates the prediction of the result is developed
+                by using the Deep Learning Sequential CNN model and by using VGG16 Transfer Learning.
+                <h3><p style="text-align: center"> * Note: This Web Application is developed for "Educational Purposes" ONLY.</p></h3>
+
+            </h4>
+        </div>
+
+
+{% endblock content %}

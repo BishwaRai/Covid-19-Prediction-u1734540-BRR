@@ -1,0 +1,149 @@
+{% extends 'menu.html' %}
+{% block content %}
+    <header>
+        <img src="{{ url_for('static', filename='covid-19hi.jpg') }}" width="100%" height="500"
+             align="center">
+        <div class="row" style="background-color: #37bfaf; color: #fafafa">
+            <div class="col-lg-10 mx-auto">
+                <br>
+                <h1 class="text-uppercase " style="font-size: 3rem; color: #fafafa">
+                    <center><strong>COVID-19 CT IMAGE CLASSIFIER </strong></center>
+                </h1>
+                <br>
+            </div>
+            <br>
+        </div>
+    </header>
+    <div class="content-section shadow p-3 mb-5" style="border: none;background-color:#37bfaf;">
+        <!-- <a class="content-section" href="main">Lungs CT Scan </a><br><br> -->
+        <div class="row equal_size">
+            <div class="col-sm-6">
+                <div class="card " style="background-color: azure; border-radius: 2rem;">
+                    <div class="card-body" style="box-shadow: 10px 5px 5px #0c9184;border-radius: 2rem;">
+                        <center>
+                            <h4 class="card-title">Scan Patient CT image</h4>
+                            <p class="card-text">
+                                To add new patient and examine the patients Lungs CT scant,
+                            <p class="card-text">Please the the button below !</p>
+                            </p>
+                            <a type="button" class="btn btn-outline-info button-circle btn-lg "
+                               style="background-color: #0c9184" href="main"
+                               role="button"> Patients details </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        </center>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card " style="background-color: azure; border-radius: 2rem;">
+                    <div class="card-body" style="box-shadow: 10px 5px 5px #0c9184;border-radius: 2rem;">
+                        <center>
+                            <h4 class="card-title">View and Search stored Patient CT</h4>
+                            <p class="card-text">
+                                To search and view patient's details stored in database ,
+                            <p class="card-text">Please the the button below !</p>
+                            </p>
+                            <a type="button" class="btn btn-outline-info button-circle btn-lg "
+                               style="background-color: #0c9184" href="record"
+                               role="button"> Patient
+                                Record </a></a>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <a type="button" class="btn btn-outline-info button-circle btn-lg bg-info" href="main" role="button" > Lungs CT Scan </a></a>
+        <a type="button" class="btn bg-info" href="main" role="button">HOME</a> -->
+
+        <!-- <a class="content-section" href="record">Patient Record</a><br><br> -->
+    </div>
+
+
+    <div class="image-fluid " style="background-color: rgba(0,0,0,0.6)">
+        <p></p>
+        <img src="{{ url_for('static', filename='skylungs.jpg') }}" style="background-color: rgba(0,0,0,0.6);" width="100%" height="500">
+        <!--<div class="overlay" style="background-color: rgba(0,0,0,0.6)"> </div>-->
+    </div>
+        <section>
+
+
+            <form action="/home" method="POST" enctype="multipart/form-data">
+                <center>
+
+                    <div class="content-section"
+                         style="padding: 10px 10px;margin-bottom: 100px; background-color:#37bfae;border: 0px;margin-top: -400px; ">
+                        <div id="quickScan">
+                            {% if scroll %}
+                                <script>
+                                    document.getElementById('{{ scroll }}').scrollIntoView();
+                                    // or
+                                    document.location.hash = '#' + '{{ scroll }}';
+                                </script>
+                            {% endif %}
+                        </div>
+
+                        <div style="background-color: #31ab9d; color: #fafafa; border-radius: 2.5rem;border-color: #fafafa">
+                            <br><h1 class="col-md-6 " style="color: white;background-color: #0c9184;font-size: 48px;
+                                                            border-radius: 1rem;padding-block: 10px;"> Perform Quick Scan Here </h1><br>
+
+                            <!-- upload image  -->
+
+                            <p><input class="btn button-circle btn-lg " style="background-color: #0c9184;border-radius: 10px;" type="file"
+                                      name="image_file"
+                                      role="button"
+                                      accept="image/*"></p>
+                            <div>
+                                <span style="display: inline">
+                                        <input class="btn rounded-pill btn-lg hover-overlay ripple shadow-1-strong rounded"
+                                               style="background-color: #0c9184"
+                                               type="submit"
+                                               name="action"
+                                               value="SUBMIT"
+                                               role="button"/>
+                                        <input class="btn rounded-pill btn-lg btn-danger"
+                                               type="reset"
+                                               value="   RESET "
+                                               role="button">
+                                </span>
+                            </div>
+
+                            <div><br></div>
+                            <!-- <a class="content-section" href="record">Patient Record</a><br><br> -->
+                        </div>
+                </center>
+
+                {% if filename %}
+                    <div class="container" >
+                    <br>
+                        <h2 align="center" style='color: white; font-size: 34px;'>Quick Scan Report</h2>
+                        <div class="message_holder"></div>
+                        <div class="alert alert-info" style="border-radius: 3rem;background-color:#f8f9fa;" role="alert">
+                            <br>
+                            <center><h3 class="col-md-6 "> Uploaded CT Image: </h3></center>
+                            <br>
+                            <div>
+                                <center><img src="static/uploads/{{ image }}" width="640" height="427"></center>
+                            </div>
+                            <br>
+                            <div class="alert alert-success "
+                                 style="background-color:#d4edda;border-radius: 3rem;" role="alert">
+                                <center><h4>Predicted Result: "{{ pred_response }}"</h4></center>
+                                <!--<center><h4>Full Result: "{{ pred_response }}"</h4></center>-->
+
+                            </div>
+
+                            <!-- <div class="alert alert-secondary" role="alert">Percent: "{{ percent }}"</div> -->
+                            <!-- <div class="alert alert-secondary" role="alert">trial: "{{ trial }}"</div> -->
+                            <!-- <div class="alert alert-secondary" role="alert">Class 0: "{{class_0}}"
+                                &emsp;&emsp; Class 1: "{{class_1}}"</div> -->
+                        </div>
+                    </div>
+                {% endif %}
+            </form>
+        </section>
+        <img src="{{ url_for('static', filename='HANDS_FACE_SPACE.jpg') }}" width="100%" height="500"
+             align="center">
+    </div>
+
+{% endblock content %}
